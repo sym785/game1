@@ -39,8 +39,20 @@
 
           drawBackground();
           statuses.forEach(function(status) {
-            ctx.fillStyle = status.color;
-            ctx.fillRect(status.x, status.y, status.width, status.height);
+            switch(status.shape) {
+              case "rectangle" :
+                ctx.fillStyle = status.color;
+                ctx.fillRect(status.x, status.y, status.width, status.height);
+                break;
+              case "circle" :
+                ctx.fillStyle = status.color;
+                ctx.beginPath();
+                ctx.arc(status.x, status.y, status.r, 0, 2 * Math.PI);
+                ctx.stroke();
+                ctx.fill();
+                break;
+            }
+
           });
 
           console.log("I'm moving!");
